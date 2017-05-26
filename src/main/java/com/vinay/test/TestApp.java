@@ -15,7 +15,7 @@ import com.vinay.util.HibernateUtil;
 
 public class TestApp {
 
-	HibernateUtil util = new HibernateUtil();
+
 	Session session = null;
 
 	/**
@@ -29,12 +29,12 @@ public class TestApp {
 		app.listCourse();
 	}
 
-	@SuppressWarnings("static-access")
+
 	private void addCourse(String courseName) {
 
 		Session session = null;
 		try {
-			session = util.getSession();
+			session = HibernateUtil.getSession();
 			Transaction tx = session.beginTransaction();
 
 			Course course = new Course();
@@ -56,11 +56,11 @@ public class TestApp {
 
 	}
 
-	@SuppressWarnings("static-access")
+
 	private void addTopic(String topicName) {
 
 		try {
-			session = util.getSession();
+			session = HibernateUtil.getSession();
 			Transaction tx = session.beginTransaction();
 
 			Topic topic = new Topic();
@@ -77,8 +77,7 @@ public class TestApp {
 	}
 
 	private void listCourse() {
-		session = util.getSession();
-		Transaction tx = session.beginTransaction();
+		session = HibernateUtil.getSession();
 		CriteriaQuery<Course> courseQuery = session.getCriteriaBuilder().createQuery(Course.class);
 		Root<Course> courseRoot = courseQuery.from(Course.class);
 
